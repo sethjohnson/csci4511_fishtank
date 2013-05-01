@@ -4,7 +4,7 @@ float clamp(float input, float bound_a, float bound_b) {
   else return input;
 }
 
-boolean circle_overlap_rect(PVector circle_center, float radius, PVector 
+//boolean circle_overlap_rect(PVector circle_center, float radius, PVector 
 
 // Class definitions
 
