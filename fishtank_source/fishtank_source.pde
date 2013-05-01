@@ -1,3 +1,11 @@
+float clamp(float input, float bound_a, float bound_b) {
+  if(input < min(bound_a, bound_b)) return min(bound_a, bound_b);
+  else if(input >max(bound_a, bound_b)) return max(bound_a, bound_b);
+  else return input;
+}
+
+boolean circle_overlap_rect(PVector circle_center, float radius, PVector 
+
 // Class definitions
 
 class Agent {
@@ -6,13 +14,18 @@ class Agent {
     dimension = new PVector(10,10);
     direction = new PVector(1,0);
     velocity = 0;
+    turn_speed = 1;
+    max_velocity = 50;
+    
   }
   PVector position;
   PVector direction;
   
   PVector dimension;
   float velocity;
-  void update() {
+  float max_velocity;
+  float turn_speed;
+  void update(float d_t) {
   
   }
   
@@ -39,16 +52,18 @@ class CircleAgent extends Agent {
     line(0,0,dimension.x, 0);
   }
   
-    void update() {
+    void update(float d_t) {
     PVector mouse = new PVector(mouseX, mouseY);
     if(mousePressed){
                 // Make the direction slowly change until object is facing target
-          direction.add (PVector.mult(PVector.fromAngle((PVector.sub(mouse,position).heading())),0.1));
+          direction.add (PVector.mult(PVector.fromAngle((PVector.sub(mouse,position).heading())),turn_speed));
           
-          direction.normalize();
+          if(direction.mag() > max_velocity) {
+            direction.setMag(max_velocity);
+          }
          
     }
-    position.add(direction);
+    position.add(PVector.mult(direction, d_t));
   }
 }
 
@@ -82,6 +97,8 @@ void clear() {
   background(128);
 }
 
+Agent zone;
+
 void setup() {
   size(500,500);
   
@@ -90,17 +107,21 @@ void setup() {
   
   c = new CircleAgent(new PVector(100,200), 20);
   p = new CircleAgent(new PVector(200,200), 10);
+  zone = new RectangleAgent(new PVector(250,250), new PVector(100,60),0);
   agents = new ArrayList();
+  agents.add(zone);
   agents.add(c);
   agents.add(p);
   agents.add(new RectangleAgent(new PVector(50,50), new PVector(20, 100), 45));
 }
-
+int tick=0;
 void draw() {
   clear();
+  int temp_tick = millis();
   for(int i = 0; i < agents.size(); i++) {
     Agent a = (Agent) agents.get(i);
-    a.update();
+    a.update((temp_tick-tick)/1000.0);
     a.render();
   }
+  tick = temp_tick;
 }
