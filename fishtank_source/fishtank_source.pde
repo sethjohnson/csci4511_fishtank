@@ -42,7 +42,11 @@ class CircleAgent extends Agent {
     void update() {
     PVector mouse = new PVector(mouseX, mouseY);
     if(mousePressed){
-          direction = PVector.fromAngle((PVector.sub(mouse,position).heading()));
+                // Make the direction slowly change until object is facing target
+          direction.add (PVector.mult(PVector.fromAngle((PVector.sub(mouse,position).heading())),0.1));
+          
+          direction.normalize();
+         
     }
     position.add(direction);
   }
