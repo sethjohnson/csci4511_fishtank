@@ -11,6 +11,8 @@ AGENT:
 - function to determine it's current target (based on need functions)
 - list (or array) of needs that are met by this agent[zone?] (since Zones are agents)
 - functions for incementing each need the agent meets (Seth thinks this should just be a value in the link between needs and zones). 
+- at-zone behavior
+- graphical representation of need status 
 
 Need to implement a "Need" class: (Done - conrad)
 Each "need" object has:
