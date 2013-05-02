@@ -154,6 +154,38 @@ class Agent extends CircleEntity {
     needs.add(need);
   }
   
+  void update(float d_t) {
+    PVector mouse = ((Need)needs.get(0)).link.zone.point_nearest_point(position);
+    if(true){
+                // Make the direction slowly change until object is facing target
+          direction.add (PVector.mult(PVector.fromAngle((PVector.sub(mouse,position).heading())),turn_speed));
+          
+          if(direction.mag() > max_velocity) {
+            direction.setMag(max_velocity);
+          }
+         
+    }
+    position.add(PVector.mult(direction, d_t));
+    is_overlapped = false;
+    for (int i = 0; i < zones.size(); i++) {
+      PVector distance = PVector.sub(position, ((RectangleEntity)zones.get(i)).point_nearest_point(position));
+      if(PVector.dot(distance, distance) < dimension.x*dimension.x){
+        is_overlapped = true;
+        break;
+      }
+    }
+    //position.x = mouseX;
+    //position.y = mouseY;
+  }
+  
+  
+  void render() {
+    pushMatrix();
+    translate(position.x, position.y);
+    rotate(direction.heading());
+    draw();
+    popMatrix();
+  }
   void draw() {
      stroke(0);
     //ellipse(0,0, 2*dimension.x,2*dimension.y);
@@ -215,13 +247,16 @@ void setup() {
   
   c = new Agent(new PVector(100,200), 20);
 
-  zone = new Zone(new PVector(250,250), new PVector(100,60),45);
+  zone = new Zone(new PVector(400,400), new PVector(100,60),45);
   c.addNeed(new Need("neediness", 100, 5, zone));
   agents = new ArrayList();
   zones = new ArrayList();
   zones.add(zone);
   agents.add(c);
 }
+
+
+
 int tick=0;
 void draw() {
   clear();
