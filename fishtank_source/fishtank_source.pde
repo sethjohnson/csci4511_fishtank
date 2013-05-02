@@ -1,4 +1,3 @@
-Zone zone;
 float clamp(float input, float bound_a, float bound_b) {
   if(input < min(bound_a, bound_b)) return min(bound_a, bound_b);
   else if(input >max(bound_a, bound_b)) return max(bound_a, bound_b);
@@ -71,7 +70,7 @@ class CircleEntity extends Entity {
      stroke(0);
     //ellipse(0,0, 2*dimension.x,2*dimension.y);
     if (is_overlapped) fill(255,0,0);
-      ellipse(0,0, 2*dimension.x,2*dimension.y);
+      ellipse(0,0, dimension.x,dimension.y);
         fill(255, 255, 255);
         line(0,0,dimension.x, 0);
 
@@ -79,27 +78,27 @@ class CircleEntity extends Entity {
     
   
     void update(float d_t) {
-    PVector mouse = new PVector(mouseX, mouseY);
-    if(mousePressed){
-                // Make the direction slowly change until object is facing target
-          direction.add (PVector.mult(PVector.fromAngle((PVector.sub(mouse,position).heading())),turn_speed));
-          
-          if(direction.mag() > max_velocity) {
-            direction.setMag(max_velocity);
-          }
-         
-    }
-    position.add(PVector.mult(direction, d_t));
-    is_overlapped = false;
-    for (int i = 0; i < zones.size(); i++) {
-      PVector distance = PVector.sub(position, ((RectangleEntity)zones.get(i)).point_nearest_point(position));
-      if(PVector.dot(distance, distance) < dimension.x*dimension.x){
-        is_overlapped = true;
-        break;
-      }
-    }
-    //position.x = mouseX;
-    //position.y = mouseY;
+//    PVector mouse = new PVector(mouseX, mouseY);
+//    if(mousePressed){
+//                // Make the direction slowly change until object is facing target
+//          direction.add (PVector.mult(PVector.fromAngle((PVector.sub(mouse,position).heading())),turn_speed));
+//          
+//          if(direction.mag() > max_velocity) {
+//            direction.setMag(max_velocity);
+//          }
+//         
+//    }
+//    position.add(PVector.mult(direction, d_t));
+//    is_overlapped = false;
+//    for (int i = 0; i < zones.size(); i++) {
+//      PVector distance = PVector.sub(position, ((RectangleEntity)zones.get(i)).point_nearest_point(position));
+//      if(PVector.dot(distance, distance) < dimension.x*dimension.x){
+//        is_overlapped = true;
+//        break;
+//      }
+//    }
+//    //position.x = mouseX;
+//    //position.y = mouseY;
   }
 }
 
@@ -124,7 +123,7 @@ class RectangleEntity extends Entity {
     // Find the closest point to the circle within the rectangle
     PVector closest = new PVector(
                   clamp(rot.x, position.x-dimension.x/2, position.x+dimension.x/2),
-                  clamp(rot.y, position.y+dimension.y/2, position.x-dimension.y/2)
+                  clamp(rot.y, position.y+dimension.y/2, position.y-dimension.y/2)
                 );
     closest.sub(position);
     closest.rotate(direction.heading());
@@ -242,17 +241,21 @@ void clear() {
 void setup() {
   size(500,500);
   
-  Agent c;
-  Entity p; // Demonstrate polymorphic qualities
-  
-  c = new Agent(new PVector(100,200), 20);
-
-  zone = new Zone(new PVector(400,400), new PVector(100,60),45);
+  Agent c= new Agent(new PVector(100,200), 20);;
+  Agent d = new Agent(new PVector(150,200), 15);; 
+   
+  Zone zone = new Zone(new PVector(400,300), new PVector(100,60),10);;
+  Zone zone2 = new Zone(new PVector(250,25), new PVector(50,50),45);;
   c.addNeed(new Need("neediness", 100, 5, zone));
+  d.addNeed(new Need("neediness", 100, 5, zone2));
+
   agents = new ArrayList();
   zones = new ArrayList();
   zones.add(zone);
+  zones.add(zone2);
   agents.add(c);
+  agents.add(d);
+
 }
 
 
