@@ -85,7 +85,21 @@ class RectangleAgent extends Agent {
   }
 }
 
-
+class Need {
+  String name;
+  int value;
+  int threshold;
+  
+  void decrement(){
+   value--; 
+  }
+ Need(){} 
+ Need(String name, int value, int threshold){
+  this.name = name;
+  this.value = value;
+  this.threshold = threshold; 
+ }
+}
 
 // Global Initializations
 
