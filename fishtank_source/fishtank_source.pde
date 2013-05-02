@@ -1,4 +1,4 @@
-Entity zone;
+Zone zone;
 float clamp(float input, float bound_a, float bound_b) {
   if(input < min(bound_a, bound_b)) return min(bound_a, bound_b);
   else if(input >max(bound_a, bound_b)) return max(bound_a, bound_b);
@@ -139,23 +139,49 @@ class Zone extends RectangleEntity {
   ArrayList needLinks;
   Zone(PVector p, PVector d, float a) {
     super(p,d,a);
+    needLinks = new ArrayList();
   }
     
+}
+
+class Agent extends CircleEntity {
+  ArrayList needs;
+  Agent(PVector p, float r) {
+    super(p, r);
+    needs = new ArrayList();
+  }
+  void addNeed(Need need) {
+    needs.add(need);
+  }
+  
+  void draw() {
+     stroke(0);
+    //ellipse(0,0, 2*dimension.x,2*dimension.y);
+    if (is_overlapped) fill(255,0,0);
+      ellipse(0,0, 2*dimension.x,2*dimension.y);
+        fill(255, 255, 255);
+        line(0,0,dimension.x, 0);
+    for(int i = 0; i < needs.size(); i++){
+      println(((Need)needs.get(i)).name);
+    }
+
+  }
 }
 
 class Need {
   String name;
   int value;
   int threshold;
-  
+  NeedZoneLink link;
   void decrement(){
    value--; 
   }
- Need(){} 
- Need(String name, int value, int threshold){
+
+ Need(String name, int value, int threshold,Zone z){
   this.name = name;
   this.value = value;
   this.threshold = threshold; 
+  link = new NeedZoneLink(z,this);
  }
 }
 
@@ -184,29 +210,33 @@ void clear() {
 void setup() {
   size(500,500);
   
-  CircleEntity c;
+  Agent c;
   Entity p; // Demonstrate polymorphic qualities
   
-  c = new CircleEntity(new PVector(100,200), 20);
-  p = new CircleEntity(new PVector(200,200), 10);
-  zone = new RectangleEntity(new PVector(250,250), new PVector(100,60),45);
+  c = new Agent(new PVector(100,200), 20);
+
+  zone = new Zone(new PVector(250,250), new PVector(100,60),45);
+  c.addNeed(new Need("neediness", 100, 5, zone));
   agents = new ArrayList();
   zones = new ArrayList();
   zones.add(zone);
-  zones.add(new RectangleEntity(new PVector(50,50), new PVector(20, 100), 45));
-  agents.add(zone);
   agents.add(c);
-  agents.add(p);
-  agents.add(new RectangleEntity(new PVector(50,50), new PVector(20, 100), 45));
 }
 int tick=0;
 void draw() {
   clear();
   int temp_tick = millis();
+  
+  for(int i = 0; i < zones.size(); i++) {
+    Entity a = (Entity) zones.get(i);
+    a.update((temp_tick-tick)/1000.0);
+    a.render();
+  }
   for(int i = 0; i < agents.size(); i++) {
     Entity a = (Entity) agents.get(i);
     a.update((temp_tick-tick)/1000.0);
     a.render();
   }
+
   tick = temp_tick;
 }
