@@ -1,4 +1,4 @@
-Agent zone;
+Entity zone;
 float clamp(float input, float bound_a, float bound_b) {
   if(input < min(bound_a, bound_b)) return min(bound_a, bound_b);
   else if(input >max(bound_a, bound_b)) return max(bound_a, bound_b);
@@ -26,8 +26,8 @@ boolean circle_overlap_rect(PVector circle_center, float radius, PVector rect_ce
 
 // Class definitions
 
-class Agent {
-  Agent(PVector p) {
+class Entity {
+  Entity(PVector p) {
     position = p;
     dimension = new PVector(10,10);
     direction = new PVector(1,0);
@@ -62,8 +62,8 @@ class Agent {
 }
 
 
-class CircleAgent extends Agent {
-  CircleAgent(PVector p, float r) {
+class CircleEntity extends Entity {
+  CircleEntity(PVector p, float r) {
     super(p);
     dimension = new PVector(r,r);
   }
@@ -92,7 +92,7 @@ class CircleAgent extends Agent {
     position.add(PVector.mult(direction, d_t));
     is_overlapped = false;
     for (int i = 0; i < zones.size(); i++) {
-      PVector distance = PVector.sub(position, ((RectangleAgent)zones.get(i)).point_nearest_point(position));
+      PVector distance = PVector.sub(position, ((RectangleEntity)zones.get(i)).point_nearest_point(position));
       if(PVector.dot(distance, distance) < dimension.x*dimension.x){
         is_overlapped = true;
         break;
@@ -104,8 +104,8 @@ class CircleAgent extends Agent {
 }
 
 
-class RectangleAgent extends Agent {
-  RectangleAgent(PVector p, PVector d, float a) {
+class RectangleEntity extends Entity {
+  RectangleEntity(PVector p, PVector d, float a) {
     super(p);
     dimension = d;
     velocity = 0;
@@ -135,6 +135,13 @@ class RectangleAgent extends Agent {
   }
 }
 
+class Zone extends RectangleEntity {
+  ArrayList needLinks;
+  Zone(PVector p, PVector d, float a) {
+    super(p,d,a);
+  }
+    
+}
 
 class Need {
   String name;
@@ -152,6 +159,15 @@ class Need {
  }
 }
 
+class NeedZoneLink {
+  Zone zone;
+  Need need;
+  float fill_rate;
+  NeedZoneLink(Zone z, Need n) {
+    zone = z;
+    need = n;
+  }
+}
 // Global Initializations
 
 
@@ -168,27 +184,27 @@ void clear() {
 void setup() {
   size(500,500);
   
-  CircleAgent c;
-  Agent p; // Demonstrate polymorphic qualities
+  CircleEntity c;
+  Entity p; // Demonstrate polymorphic qualities
   
-  c = new CircleAgent(new PVector(100,200), 20);
-  p = new CircleAgent(new PVector(200,200), 10);
-  zone = new RectangleAgent(new PVector(250,250), new PVector(100,60),45);
+  c = new CircleEntity(new PVector(100,200), 20);
+  p = new CircleEntity(new PVector(200,200), 10);
+  zone = new RectangleEntity(new PVector(250,250), new PVector(100,60),45);
   agents = new ArrayList();
   zones = new ArrayList();
   zones.add(zone);
-  zones.add(new RectangleAgent(new PVector(50,50), new PVector(20, 100), 45));
+  zones.add(new RectangleEntity(new PVector(50,50), new PVector(20, 100), 45));
   agents.add(zone);
   agents.add(c);
   agents.add(p);
-  agents.add(new RectangleAgent(new PVector(50,50), new PVector(20, 100), 45));
+  agents.add(new RectangleEntity(new PVector(50,50), new PVector(20, 100), 45));
 }
 int tick=0;
 void draw() {
   clear();
   int temp_tick = millis();
   for(int i = 0; i < agents.size(); i++) {
-    Agent a = (Agent) agents.get(i);
+    Entity a = (Entity) agents.get(i);
     a.update((temp_tick-tick)/1000.0);
     a.render();
   }
