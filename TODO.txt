@@ -1,0 +1,15 @@
+Need to be implemented:
+General:
+- list of zones
+AGENT:
+- list (or array) of needs
+- function to determine it's current target (based on need functions)
+- list (or array) of needs that are met by this agent (since Zones are agents)
+- functions for incementing each need the agent meets
+
+Need to implement a "Need" class: (Done - conrad)
+Each "need" object has:
+- name (Done - conrad)
+- decrement function (Note: I don't know how to pass in a math function, all it does is subtract 1 right now -conrad)
+- "Threshold value" (value where the actor has to begin searching for a zone that meets this need) (Done - conrad)
+- current value (Done - conrad)
