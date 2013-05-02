@@ -1,11 +1,16 @@
+Thoughts: Do we really need zones and agents to share inheritence? Can zones just be zones and agents just be agents? If needed, we can easily give agents a list of "target" agents in addition to a list of zones... 
+
+
 Need to be implemented:
 General:
-- list of zones
+- list of zones (Done - Seth)
+- Clean up unneeded inheritence hierarchy (maybe?)
+
 AGENT:
-- list (or array) of needs
+- list (or array) of needs (Done- Seth)
 - function to determine it's current target (based on need functions)
-- list (or array) of needs that are met by this agent (since Zones are agents)
-- functions for incementing each need the agent meets
+- list (or array) of needs that are met by this agent[zone?] (since Zones are agents)
+- functions for incementing each need the agent meets (Seth thinks this should just be a value in the link between needs and zones). 
 
 Need to implement a "Need" class: (Done - conrad)
 Each "need" object has:
