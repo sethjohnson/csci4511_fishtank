@@ -3,8 +3,27 @@ float clamp(float input, float bound_a, float bound_b) {
   else if(input >max(bound_a, bound_b)) return max(bound_a, bound_b);
   else return input;
 }
+Agent zone;
 
-boolean circle_overlap_rect(PVector circle_center, float radius, PVector 
+boolean circle_overlap_rect(PVector circle_center, float radius, PVector rect_center, PVector rect_dim, PVector orientation){
+  // clamp(value, min, max) - limits value to the range min..max
+PVector rot = new PVector(circle_center.x, circle_center.y);
+rot.sub(rect_center);
+rot.rotate(-orientation.heading());
+rot.add(rect_center);
+// Find the closest point to the circle within the rectangle
+float closestX = clamp(rot.x, rect_center.x-rect_dim.x/2, rect_center.x+rect_dim.x/2);
+float closestY = clamp(rot.y, rect_center.y+rect_dim.y/2, rect_center.x-rect_dim.y/2);
+
+// Calculate the distance between the circle's center and this closest point
+float distanceX = rot.x - closestX;
+float distanceY = rot.y - closestY;
+
+// If the distance is less than the circle's radius, an intersection occurs
+float distanceSquared = (distanceX * distanceX) + (distanceY * distanceY);
+return distanceSquared < (radius * radius);
+}
+
 
 // Class definitions
 
@@ -48,8 +67,13 @@ class CircleAgent extends Agent {
   }
     void draw() {
      stroke(0);
-    ellipse(0,0, 2*dimension.x,2*dimension.y);
+    //ellipse(0,0, 2*dimension.x,2*dimension.y);
     line(0,0,dimension.x, 0);
+    if(circle_overlap_rect(position,dimension.x,((RectangleAgent)zone).position, ((RectangleAgent)zone).dimension, zone.direction)){
+      fill(204, 102, 0);
+    }
+        ellipse(0,0, 2*dimension.x,2*dimension.y);
+        fill(255, 255, 255);
   }
   
     void update(float d_t) {
@@ -63,7 +87,9 @@ class CircleAgent extends Agent {
           }
          
     }
-    position.add(PVector.mult(direction, d_t));
+    //position.add(PVector.mult(direction, d_t));
+    position.x = mouseX;
+    position.y = mouseY;
   }
 }
 
@@ -97,7 +123,7 @@ void clear() {
   background(128);
 }
 
-Agent zone;
+
 
 void setup() {
   size(500,500);
@@ -107,12 +133,13 @@ void setup() {
   
   c = new CircleAgent(new PVector(100,200), 20);
   p = new CircleAgent(new PVector(200,200), 10);
-  zone = new RectangleAgent(new PVector(250,250), new PVector(100,60),0);
+  zone = new RectangleAgent(new PVector(250,250), new PVector(100,60),45);
   agents = new ArrayList();
   agents.add(zone);
   agents.add(c);
   agents.add(p);
   agents.add(new RectangleAgent(new PVector(50,50), new PVector(20, 100), 45));
+  agents.add(new RectangleAgent(new PVector(250,250), new PVector(100,60),0));
 }
 int tick=0;
 void draw() {
