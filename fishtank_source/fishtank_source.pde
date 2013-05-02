@@ -1,5 +1,9 @@
 Agent zone;
-
+float clamp(float input, float bound_a, float bound_b) {
+  if(input < min(bound_a, bound_b)) return min(bound_a, bound_b);
+  else if(input >max(bound_a, bound_b)) return max(bound_a, bound_b);
+  else return input;
+}
 
 boolean circle_overlap_rect(PVector circle_center, float radius, PVector rect_center, PVector rect_dim, PVector orientation){
   // clamp(value, min, max) - limits value to the range min..max
