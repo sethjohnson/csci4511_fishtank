@@ -9,7 +9,7 @@ public class Rectangle extends Terrain
 	
 	Rectangle(PApplet _parent, Grid _grid, PVector _position, int w, int h)
 	{
-		super(_parent, _grid,_position);
+		super(_position, _parent);
 		
 		width = w;
 		height = h;
@@ -17,10 +17,9 @@ public class Rectangle extends Terrain
 	
 	void draw()
 	{
-		parent.noStroke(); // For looks.
+		parent.stroke(0);
 		parent.fill(127);
 		parent.rect(position.x, position.y, width, height);
-		parent.stroke(0);
 	}
 
 	void update()

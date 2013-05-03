@@ -17,7 +17,7 @@ public class Rectangle extends Terrain
 	
 	void draw()
 	{
-		parent.noStroke(); // For looks.
+		parent.noStroke();
 		parent.fill(127);
 		parent.rect(position.x, position.y, width, height);
 		parent.stroke(0);

@@ -23,7 +23,7 @@ public abstract class Terrain extends Component
 		position = _position;
 		grabbed = Corner.NONE;
 		oldMousePosition = new PVector(-1, -1);
-		oldTerrainPosition = new PVector(-1, -1);
+		
 		snapTo();
 	}
 	
@@ -36,7 +36,8 @@ public abstract class Terrain extends Component
 		{
 			changeInPosition();
 			snapTo();
-			changeInMouse();	
+			
+			
 		}
 				
 		oldMousePosition.x = parent.mouseX;
@@ -52,27 +53,20 @@ public abstract class Terrain extends Component
 		position.y += deltaY;
 	}
 	
-	void changeInMouse()
+	PVector changeInMouse()
 	{
-		float deltaX = position.x - oldTerrainPosition.x;
-		float deltaY = position.y - oldTerrainPosition.y;
+		float deltaX;
+		float deltaY;
 		
-		parent.mouseX += deltaX;
-		parent.mouseY += deltaY;
+		return null;
 	}
 	
 	void snapTo()
 	{
 		int i = (int)(position.x / grid.cellWidth);
 		int j = (int)(position.y / grid.cellHeight);
-		
-		oldTerrainPosition.x = position.x;
-		oldTerrainPosition.y = position.y;
-		
-		if(i < grid.columns && i > 0 && j < grid.rows && j > 0)
-		{
-			position.x = grid.grid[i][j].x;
-			position.y = grid.grid[i][j].y;
-		}
+						
+		position.x = grid.grid[i][j].x;
+		position.y = grid.grid[i][j].y;
 	}
 }

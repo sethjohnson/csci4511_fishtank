@@ -23,7 +23,7 @@ public abstract class Terrain extends Component
 		position = _position;
 		grabbed = Corner.NONE;
 		oldMousePosition = new PVector(-1, -1);
-		oldTerrainPosition = new PVector(-1, -1);
+		
 		snapTo();
 	}
 	

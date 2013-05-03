@@ -12,7 +12,6 @@ public abstract class Terrain extends Component
 	
 	PVector position;
 	PVector oldMousePosition;
-	PVector oldTerrainPosition;
 	
 	Grid grid;
 
@@ -23,8 +22,6 @@ public abstract class Terrain extends Component
 		position = _position;
 		grabbed = Corner.NONE;
 		oldMousePosition = new PVector(-1, -1);
-		oldTerrainPosition = new PVector(-1, -1);
-		snapTo();
 	}
 	
 	void update()
@@ -34,45 +31,34 @@ public abstract class Terrain extends Component
 			grabbed = Corner.NONE;
 		else if(grabbed == Corner.CENTER && oldMousePosition.x > -1 && oldMousePosition.y > -1)
 		{
-			changeInPosition();
+			PVector deltaP = changeInPosition();
+			position.x += deltaP.x;
+			position.y += deltaP.y;
 			snapTo();
-			changeInMouse();	
 		}
 				
 		oldMousePosition.x = parent.mouseX;
 		oldMousePosition.y = parent.mouseY;
 	}
 		
-	void changeInPosition()
+	PVector changeInPosition()
 	{
 		float deltaX = parent.mouseX - oldMousePosition.x;
 		float deltaY = parent.mouseY - oldMousePosition.y;
-		
-		position.x += deltaX;
-		position.y += deltaY;
+		return new PVector(deltaX, deltaY);
 	}
 	
-	void changeInMouse()
+	PVector changeInMouse()
 	{
-		float deltaX = position.x - oldTerrainPosition.x;
-		float deltaY = position.y - oldTerrainPosition.y;
-		
-		parent.mouseX += deltaX;
-		parent.mouseY += deltaY;
+		float deltaX;
 	}
 	
 	void snapTo()
 	{
 		int i = (int)(position.x / grid.cellWidth);
 		int j = (int)(position.y / grid.cellHeight);
-		
-		oldTerrainPosition.x = position.x;
-		oldTerrainPosition.y = position.y;
-		
-		if(i < grid.columns && i > 0 && j < grid.rows && j > 0)
-		{
-			position.x = grid.grid[i][j].x;
-			position.y = grid.grid[i][j].y;
-		}
+						
+		position.x = grid.grid[i][j].x;
+		position.y = grid.grid[i][j].y;
 	}
 }
