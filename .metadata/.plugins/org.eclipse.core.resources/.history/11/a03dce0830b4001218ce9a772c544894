@@ -1,0 +1,50 @@
+import processing.core.PApplet;
+import processing.core.PVector;
+
+
+public abstract class Terrain 
+{	
+	enum Corner {TOP_LEFT, TOP_RIGHT, BOTTOM_LEFT, BOTTOM_RIGHT, CENTER, NONE};
+
+	Corner grabbed;
+
+	PApplet parent;
+	
+	PVector position;
+	PVector oldMousePosition;
+
+	Terrain(PVector _position, PApplet _parent)
+	{
+		position = _position;
+		parent = _parent;
+	}
+	
+	void update()
+	{
+		// Reset if we let go of mouse
+		if(!parent.mousePressed)
+			grabbed = Corner.NONE;
+		else if(grabbed == Corner.CENTER && oldMousePosition.x > -1 && oldMousePosition.y > -1)
+		{
+			PVector deltaP = changeInPosition();
+			position.x += deltaP.x;
+			position.y += deltaP.y;
+		}
+		
+		parent.pushMatrix();
+		parent.translate(position.x, position.y);
+		draw();
+		parent.popMatrix();
+	}
+	
+	void draw(){}
+	void mouseClicked(){}
+	void mousePressed(){}
+	
+	PVector changeInPosition()
+	{
+		float deltaX = parent.mouseX - oldMousePosition.x;
+		float deltaY = parent.mouseY - oldMousePosition.y;
+		return new PVector(deltaX, deltaY);
+	}
+}

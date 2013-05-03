@@ -24,22 +24,13 @@ public abstract class Sprite
 		max_velocity = 5;
 	}
 
-	void update()
+	void update(){}
+	
+	void draw()
 	{
 		if (position.x > parent.width || position.x < 0)
 			direction.x = -direction.x;
 		if (position.y > parent.height || position.y < 0)
 			direction.y = -direction.y;
-
-		parent.pushMatrix();
-		parent.translate(position.x, position.y);
-		parent.rotate(direction.heading());
-		draw();
-		parent.popMatrix();	
-	}
-	
-	void draw()
-	{
-		// Needed for rendering...don't know why.
 	}
 }
