@@ -25,6 +25,13 @@ public class Influence
 	
 	void propogateInfluence()
 	{
+		for(int i = Math.max(c_index-area, 0); i < Math.min(c_index+area, grid.columns); i++) {
+			for(int j = Math.max(r_index-area, 0); j < Math.min(r_index+area, grid.rows); j++){
+				float radius = (i-c_index)*(i-c_index) + (j-r_index)*(j-r_index);
+				if(radius < area*area) grid.grid[i][j].influence += influence;
+			}
+		}
+		/*
 		for(int runner = 0; runner < area; runner++)
 		{
 			if(c_index-delta >= 0 && r_index-delta+runner >= 0 && r_index-delta+runner < grid.rows)
@@ -49,7 +56,7 @@ public class Influence
 				grid.grid[c_index+delta-runner][r_index+delta].influence += influence;
 			}			
 		}
-		
+		*/
 		delta++;
 		area += 2;
 		influence -= momentum;
