@@ -20,7 +20,7 @@ public class Influence
 		c_index = c;
 		r_index = r;
 		
-		momentum = 0.025f;
+		momentum = 0.07f;
 	}
 	
 	void propogateInfluence()

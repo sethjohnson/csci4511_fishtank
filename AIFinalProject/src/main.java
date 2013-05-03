@@ -19,10 +19,11 @@ public class main extends PApplet
 	public void draw()
 	{		
 		screen.draw();
+		screen.update();
 	}
-	
+		
 	public void mouseClicked()
 	{
-		screen.update();
+		screen.mouseClicked();
 	}
 }

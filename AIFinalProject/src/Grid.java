@@ -55,7 +55,28 @@ public class Grid
 			for (int j = 0; j < rows; j++)
 			{
 				grid[i][j].display();
-				
+			}
+		}
+		
+		// Draw our influence values
+		int i = (int)(parent.mouseX / cellWidth);
+		int j = (int)(parent.mouseY / cellHeight);
+		
+		if(i < columns && i > 0 && j < rows && j > 0)
+		{
+			String str = Float.toString(grid[i][j].influence);
+			parent.fill(255);
+			parent.text(str, parent.mouseX, parent.mouseY);
+		}
+	}
+	
+	void update()
+	{
+		// Decay influence over cells
+		for (int i = 0; i < columns; i++)
+		{
+			for (int j = 0; j < rows; j++)
+			{				
 				if((parent.frameCount % decay_interval) == 0 && grid[i][j].influence > 0.15)
 				{
 					grid[i][j].influence -= grid[i][j].influence*decay;
@@ -84,19 +105,9 @@ public class Grid
 				}
 			}
 		}
-		
-		int i = (int)(parent.mouseX / cellWidth);
-		int j = (int)(parent.mouseY / cellHeight);
-		
-		if(i < columns && i > 0 && j < rows && j > 0)
-		{
-			String str = Float.toString(grid[i][j].influence);
-			parent.fill(255);
-			parent.text(str, parent.mouseX, parent.mouseY);
-		}
 	}
 	
-	void update()
+	void mouseClicked()
 	{
 		int i = (int)(parent.mouseX / cellWidth);
 		int j = (int)(parent.mouseY / cellHeight);

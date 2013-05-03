@@ -1,0 +1,17 @@
+import processing.core.PApplet;
+import processing.core.PVector;
+
+
+public class Rectangle extends Terrain
+{
+	int length;
+	int height;
+	
+	Rectangle(PVector _position, PApplet _parent, int l, int h)
+	{
+		super(_position, _parent);
+		
+		length = l;
+		height = h;
+	}
+}

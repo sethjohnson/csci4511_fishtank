@@ -1,0 +1,13 @@
+import processing.core.PVector;
+
+
+public abstract class Terrain 
+{
+	PVector position;
+	
+	Terrain()
+	{
+		
+	}
+	
+}

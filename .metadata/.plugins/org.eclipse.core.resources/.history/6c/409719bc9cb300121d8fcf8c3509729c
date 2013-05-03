@@ -1,0 +1,15 @@
+import processing.core.PVector;
+
+
+public abstract class Terrain 
+{
+	PApplet parent;
+	
+	PVector position;
+	
+	Terrain()
+	{
+		
+	}
+	
+}
