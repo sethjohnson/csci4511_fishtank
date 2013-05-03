@@ -23,23 +23,19 @@ public class Sprite
 		turn_speed = 1;
 		max_velocity = 5;
 	}
-		  	
+
 	void update()
 	{
-		if(position.x < 0)
-			position.x = 1.0f;
-		if(position.x > parent.width)
-			position.x = parent.width - 1.0f;
-		if(position.y < 0)
-			position.y = 1.0f;
-		if(position.y > parent.height)
-			position.y = parent.height - 1.0f;
-		
+		if (position.x > parent.width || position.x < 0)
+			direction.x = -direction.x;
+		if (position.y > parent.height || position.y < 0)
+			direction.y = -direction.y;
+
 		parent.pushMatrix();
 		parent.translate(position.x, position.y);
 		parent.rotate(direction.heading());
 		draw();
-		parent.popMatrix();		
+		parent.popMatrix();	
 	}
 	
 	void draw()

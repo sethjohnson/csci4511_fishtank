@@ -27,10 +27,6 @@ public class Cell
 		{
 			influence = 0.0f;
 		}
-//		if(influence > 1.0)
-//		{
-//			influence = 1.0f;
-//		}
 
 		parent.stroke(100);
 		parent.fill(parent.color(255*influence, 0, 0));
