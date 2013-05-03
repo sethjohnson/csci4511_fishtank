@@ -36,7 +36,11 @@ public abstract class Terrain extends Component
 		oldMousePosition.x = parent.mouseX;
 		oldMousePosition.y = parent.mouseY;	
 	}
-		
+	
+	void draw(){}
+	void mouseClicked(){}
+	void mousePressed(){}
+	
 	PVector changeInPosition()
 	{
 		float deltaX = parent.mouseX - oldMousePosition.x;

@@ -29,11 +29,11 @@ public class Rectangle extends Terrain
 	
 	boolean mousePressed()
 	{
-		if(parent.mouseX > position.x && parent.mouseX < position.x + width && parent.mouseY > position.y && parent.mouseY < position.y + height)
+		if(parent.mouseX > position.x && parent.mouseX < position.x + width)
 		{
 			grabbed = Corner.CENTER;
 			return true;
-		}
+		}		
 		return false;
 	}
 }

@@ -3,6 +3,6 @@ public abstract class Component
 {
 	void draw(){}
 	void update(){}
-	void mouseClicked(){}
-	void mousePressed(){}
+	boolean mouseClicked(){return false;}
+	boolean mousePressed(){return false;}
 }

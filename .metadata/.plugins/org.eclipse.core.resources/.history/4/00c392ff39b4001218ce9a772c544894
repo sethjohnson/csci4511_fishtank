@@ -1,0 +1,8 @@
+
+public abstract class Component 
+{
+	void draw(){}
+	void update(){}
+	boolean mouseClicked(){}
+	boolean mousePressed(){}
+}
