@@ -93,7 +93,7 @@ public class Screen
 				{
 					//Moves the currently pressed terrain to the bottom of the list
 					//This subsequently makes it so it is drawn last, and therefore on top
-					Collections.rotate(cList.subList(itr.nextIndex(), cList.size()), -1);
+					Collections.rotate(cList.subList(itr.previousIndex(), cList.size()), -1);
 					
 					break;
 				}

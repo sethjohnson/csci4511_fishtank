@@ -68,12 +68,10 @@ public class Screen
 		
 		if(!cList.isEmpty())
 		{
-			//Iterate through the list backwards
-			//This way things on top have priority for consuming a mouse click
-			ListIterator<Component> itr = cList.listIterator(cList.size());
-			while(itr.hasPrevious())
+			ListIterator<Component> itr = cList.listIterator();
+			while(itr.hasNext())
 			{
-				Component c = itr.previous();
+				Component c = itr.next();
 				c.mouseClicked();
 			}
 		}
@@ -83,17 +81,15 @@ public class Screen
 	{
 		if(!cList.isEmpty())
 		{
-			//Iterate through the list backwards
-			//This way things on top have priority for consuming a mouse press
-			ListIterator<Component> itr = cList.listIterator(cList.size());
-			while(itr.hasPrevious())
+			ListIterator<Component> itr = cList.listIterator();
+			while(itr.hasNext())
 			{
-				Component c = itr.previous();
+				Component c = itr.next();
 				if(c.mousePressed())
 				{
 					//Moves the currently pressed terrain to the bottom of the list
 					//This subsequently makes it so it is drawn last, and therefore on top
-					Collections.rotate(cList.subList(itr.nextIndex(), cList.size()), -1);
+					Collections.rotate(cList.subList(itr.previousIndex(), cList.size()), -1);
 					
 					break;
 				}
