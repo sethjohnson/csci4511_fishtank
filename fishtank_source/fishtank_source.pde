@@ -244,10 +244,11 @@ void setup() {
   Agent c= new Agent(new PVector(100,200), 20);;
   Agent d = new Agent(new PVector(150,200), 15);; 
    
-  Zone zone = new Zone(new PVector(400,300), new PVector(100,60),10);;
-  Zone zone2 = new Zone(new PVector(250,25), new PVector(50,50),45);;
+  Zone zone = new Zone(new PVector(250,300), new PVector(500,60),0);
+  Zone zone2 = new Zone(new PVector(250,25), new PVector(50,50),45);
+  
   c.addNeed(new Need("neediness", 100, 5, zone));
-  d.addNeed(new Need("neediness", 100, 5, zone2));
+  d.addNeed(new Need("neediness2", 100, 5, zone));
 
   agents = new ArrayList();
   zones = new ArrayList();
@@ -261,6 +262,7 @@ void setup() {
 
 
 int tick=0;
+
 void draw() {
   clear();
   int temp_tick = millis();

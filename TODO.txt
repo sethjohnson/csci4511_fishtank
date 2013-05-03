@@ -20,3 +20,18 @@ Each "need" object has:
 - decrement function (Note: I don't know how to pass in a math function, all it does is subtract 1 right now -conrad)
 - "Threshold value" (value where the actor has to begin searching for a zone that meets this need) (Done - conrad)
 - current value (Done - conrad)
+
+AIFinalProject TODO:
+
+GRIDS:
+- Lists of grids (global and per agent)
+- Multiple types of grids (some desireable, some undesireble)
+
+AGENTS:
+- Behavior
+- Aggregate hill climbling for agents
+
+INFLUENCE:
+- collision detection
+- Populating/propgating grids (SETH)
+	= obstacles 
