@@ -6,7 +6,7 @@ public class main extends PApplet
 	
 	public void setup() 
 	{
-		size(800, 800);
+		size(700, 700);
 		screen = new Screen(this);
 		screen.setup();
 	}

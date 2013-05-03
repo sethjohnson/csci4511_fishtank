@@ -196,6 +196,11 @@ public class Roomba extends Sprite
 		}
 		position.add(PVector.mult(direction, d_t));
 				
+		if (position.x > 700 || position.x < 0)
+			direction.x = -direction.x;
+		//System.out.format("%i\n",parent.displayHeight);
+		if (position.y > 700 || position.y < 0)
+			direction.y = -direction.y;
 		super.update(); // transformations
 		
 		
