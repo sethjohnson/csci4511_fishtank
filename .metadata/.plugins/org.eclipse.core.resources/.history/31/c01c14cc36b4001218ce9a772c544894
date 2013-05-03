@@ -1,0 +1,8 @@
+
+public class Components 
+{
+	void draw();
+	void update();
+	void mouseClicked();
+	void mousePressed();
+}

@@ -11,6 +11,8 @@ public class Screen
 	int frame;
 	
 	LinkedList<Component> cList;
+	LinkedList<Sprite> sList; 
+	LinkedList<Terrain> tList;
 	
 	Screen(PApplet p)
 	{

@@ -1,0 +1,8 @@
+
+public interface Components 
+{
+	private void draw();
+	void update();
+	void mouseClicked();
+	void mousePressed();
+}

@@ -11,12 +11,16 @@ public class Screen
 	int frame;
 	
 	LinkedList<Component> cList;
+	LinkedList<Sprite> sList; 
+	LinkedList<Terrain> tList;
 	
 	Screen(PApplet p)
 	{
 		parent = p;
 		frame = 0;
 		
+		sList = new LinkedList<Sprite>();
+		tList = new LinkedList<Terrain>();
 		cList = new LinkedList<Component>();
 		grid = new Grid((parent.width / cellCount), (parent.height / cellCount), cellCount, cellCount, parent);
 	}
@@ -25,6 +29,9 @@ public class Screen
 	{	
 		cList.add(new Roomba(parent, new PVector(100, 200), 20, grid));
 		cList.add(new Rectangle(parent, new PVector(parent.width/2, parent.height/2), 25, 25));
+		
+//		sList.add(new Roomba(parent, new PVector(100, 200), 20, grid));	
+//		tList.add(new Rectangle(parent, new PVector(parent.width/2, parent.height/2), 25, 25));
 	}
 	
 	void draw()

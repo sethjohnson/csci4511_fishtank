@@ -11,12 +11,16 @@ public class Screen
 	int frame;
 	
 	LinkedList<Component> cList;
+	LinkedList<Sprite> sList; 
+	LinkedList<Terrain> tList;
 	
 	Screen(PApplet p)
 	{
 		parent = p;
 		frame = 0;
 		
+		sList = new LinkedList<Sprite>();
+		tList = new LinkedList<Terrain>();
 		cList = new LinkedList<Component>();
 		grid = new Grid((parent.width / cellCount), (parent.height / cellCount), cellCount, cellCount, parent);
 	}

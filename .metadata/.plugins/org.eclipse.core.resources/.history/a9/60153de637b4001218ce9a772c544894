@@ -11,12 +11,16 @@ public class Screen
 	int frame;
 	
 	LinkedList<Component> cList;
+	LinkedList<Sprite> sList; 
+	LinkedList<Terrain> tList;
 	
 	Screen(PApplet p)
 	{
 		parent = p;
 		frame = 0;
 		
+		sList = new LinkedList<Sprite>();
+		tList = new LinkedList<Terrain>();
 		cList = new LinkedList<Component>();
 		grid = new Grid((parent.width / cellCount), (parent.height / cellCount), cellCount, cellCount, parent);
 	}
@@ -25,6 +29,9 @@ public class Screen
 	{	
 		cList.add(new Roomba(parent, new PVector(100, 200), 20, grid));
 		cList.add(new Rectangle(parent, new PVector(parent.width/2, parent.height/2), 25, 25));
+		
+//		sList.add(new Roomba(parent, new PVector(100, 200), 20, grid));	
+//		tList.add(new Rectangle(parent, new PVector(parent.width/2, parent.height/2), 25, 25));
 	}
 	
 	void draw()
@@ -40,6 +47,26 @@ public class Screen
 				c.draw();
 			}
 		}
+		
+//		if(!sList.isEmpty())
+//		{
+//			ListIterator<Sprite> itr = sList.listIterator();			
+//			while(itr.hasNext())
+//			{
+//				Sprite s = itr.next();
+//				s.draw();
+//			}
+//		}
+//
+//		if(!tList.isEmpty())
+//		{
+//			ListIterator<Terrain> itr = tList.listIterator();			
+//			while(itr.hasNext())
+//			{
+//				Terrain t = itr.next();
+//				t.draw();
+//			}
+//		}
 	}
 	
 	void update()
@@ -55,6 +82,26 @@ public class Screen
 				c.update();
 			}
 		}
+		
+//		if(!sList.isEmpty())
+//		{
+//			ListIterator<Sprite> itr = sList.listIterator();			
+//			while(itr.hasNext())
+//			{
+//				Sprite s = itr.next();
+//				s.update();
+//			}
+//		}
+//		
+//		if(!tList.isEmpty())
+//		{
+//			ListIterator<Terrain> itr = tList.listIterator();
+//			while(itr.hasNext())
+//			{
+//				Terrain t = itr.next();
+//				t.update();
+//			}
+//		}
 	}
 	
 	void mouseClicked()
@@ -70,6 +117,16 @@ public class Screen
 				c.mouseClicked();
 			}
 		}
+		
+//		if(!tList.isEmpty())
+//		{
+//			ListIterator<Terrain> itr = tList.listIterator();			
+//			while(itr.hasNext())
+//			{
+//				Terrain t = itr.next();
+//				t.mouseClicked();
+//			}
+//		}		
 	}
 	
 	void mousePressed()

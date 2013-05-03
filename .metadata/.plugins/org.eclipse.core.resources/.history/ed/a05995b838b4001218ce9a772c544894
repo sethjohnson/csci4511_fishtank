@@ -38,6 +38,17 @@ public class Screen
 			{
 				Component c = itr.next();
 				c.draw();
+				
+				try
+				{
+					Object o = itr.next();
+					
+					o = (Terrain)c;
+				}
+				catch(Exception e)
+				{
+					
+				}				
 			}
 		}
 	}

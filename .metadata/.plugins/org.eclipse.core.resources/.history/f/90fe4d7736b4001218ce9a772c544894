@@ -1,7 +1,7 @@
 import processing.core.PApplet;
 import processing.core.PVector;
 
-public abstract class Sprite extends Component
+public abstract class Sprite 
 {
 	PApplet parent;
 	

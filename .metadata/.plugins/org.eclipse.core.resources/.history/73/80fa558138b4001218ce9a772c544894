@@ -38,6 +38,15 @@ public class Screen
 			{
 				Component c = itr.next();
 				c.draw();
+				
+				try
+				{
+					
+				}
+				catch(Exception e)
+				{
+					
+				}				
 			}
 		}
 	}

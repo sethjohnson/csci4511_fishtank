@@ -38,6 +38,21 @@ public class Screen
 			{
 				Component c = itr.next();
 				c.draw();
+				
+				Object o = c;
+				try
+				{					
+					o = (Terrain)c;
+					
+					System.out.println(o.getClass());
+					System.out.println("Terrain object!");
+				}
+				catch(Exception e)
+				{
+					System.out.println("Not a terrain object!");					
+					System.out.println(e);
+					System.out.println(o.getClass());
+				}				
 			}
 		}
 	}
