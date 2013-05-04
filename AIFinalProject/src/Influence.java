@@ -38,7 +38,8 @@ public class Influence
 					grid.grid[i][j].influence += influence;
 			}
 		}
-		
+		grids.remove(grid);
+		grids.add(grid);
 		delta++;
 		area += 2;
 		influence -= momentum;

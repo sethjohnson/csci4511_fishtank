@@ -118,13 +118,13 @@ public class Roomba extends Sprite
 	}
 	
 	//Update functions
-	Cell pull2(float d_t)
+	Cell pull2()
 	{
 		int c_index, r_index;
 		int i;
-		c_index = (int)(position.x / grid.cellWidth);
+		c_index = (int)(position.x / grids.getFirst().cellWidth);
 		int j;
-		r_index =(int)(position.y / grid.cellHeight);
+		r_index =(int)(position.y / grids.getFirst().cellHeight);
 		
 		float[][] options = new float[5][5];
 		float max = 0.0f;
@@ -150,7 +150,14 @@ public class Roomba extends Sprite
 			{
 				for(Grid g : grids)
 				{
-					options[i+2][j+2] += g.grid[c_index+i][r_index+j].influence;
+					if((c_index+i<=0) || (r_index+j<=0) || (c_index+i>=g.columns) || (r_index+j>=g.rows))
+					{
+						
+					}
+					else
+					{
+						options[i+2][j+2] += g.grid[c_index+i][r_index+j].influence;
+					}
 				}
 			}
 		}
@@ -159,11 +166,18 @@ public class Roomba extends Sprite
 		{
 			for(j=0; j<5; j++)
 			{
-				if(options[i][j] >max)
+				if(options[i][j] >=max)
 				{
-					max = options[i][j];
-					max_i = i;
-					max_j = j;
+					if((c_index+i-2<=0) || (r_index+j-2<=0) || (c_index+i-2>=grids.getFirst().columns) || (r_index+j-2>=grids.getFirst().rows))
+					{
+						
+					}
+					else
+					{
+						max = options[i][j];
+						max_i = i;
+						max_j = j;
+					}
 				}
 			}
 		}
