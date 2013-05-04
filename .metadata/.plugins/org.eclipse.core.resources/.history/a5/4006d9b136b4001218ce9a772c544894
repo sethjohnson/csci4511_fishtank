@@ -1,8 +1,0 @@
-
-public interface Components 
-{
-	void draw();
-	void update();
-	void mouseClicked();
-	void mousePressed();
-}
