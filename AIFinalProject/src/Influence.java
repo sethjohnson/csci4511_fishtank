@@ -1,9 +1,12 @@
+import java.util.LinkedList;
+
 import processing.core.PApplet;
 
 public class Influence 
 {
 	PApplet parent;
 	Grid grid;
+	LinkedList<Grid> grids = new LinkedList<Grid>();
 	
 	float momentum;
 	float influence = 1.0f;
@@ -35,6 +38,7 @@ public class Influence
 					grid.grid[i][j].influence += influence;
 			}
 		}
+		
 		delta++;
 		area += 2;
 		influence -= momentum;
