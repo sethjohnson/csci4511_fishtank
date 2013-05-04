@@ -9,7 +9,6 @@ public class Screen
 {
 	PApplet parent;
 	Grid grid;
-	LinkedList<Grid> grids = new LinkedList<Grid>();
 	int cellCount = 100;
 	int frame;
 	
@@ -21,9 +20,7 @@ public class Screen
 		frame = 0;
 		
 		cList = new LinkedList<Component>();
-		grid = new Grid((parent.width / cellCount), (parent.height / cellCount), cellCount, cellCount, parent, "i1");
-		grids.add(grid);
-		
+		grid = new Grid((parent.width / cellCount), (parent.height / cellCount), cellCount, cellCount, parent);
 	}
 	
 	void setup()
