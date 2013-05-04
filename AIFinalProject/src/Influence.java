@@ -1,4 +1,5 @@
 import processing.core.PApplet;
+import processing.core.PVector;
 
 public class Influence 
 {
@@ -24,19 +25,27 @@ public class Influence
 	}
 	
 	void propogateInfluence()
-	{
-		for(int i = Math.max(c_index-area, 0); i < Math.min(c_index+area, grid.columns); i++) 
-		{
-			for(int j = Math.max(r_index-area, 0); j < Math.min(r_index+area, grid.rows); j++)
+	{	
+		//0System.out.format("%d\n",((main)parent).screen.frame);
+		
+			for(int i = Math.max(c_index-area, 0); i < Math.min(c_index+area, grid.columns); i++) 
 			{
-				float radius = (i-c_index)*(i-c_index) + (j-r_index)*(j-r_index);
-				
-				if(radius < area*area) 
-					grid.grid[i][j].influence += influence;
+				for(int j = Math.max(r_index-area, 0); j < Math.min(r_index+area, grid.rows); j++)
+				{
+					PVector p = new PVector((i+1)*grid.cellWidth,(j+1)*grid.cellHeight);
+
+					if(!((main)parent).screen.doesAnyComponentContainPoint(p)){
+						float radius = (i-c_index)*(i-c_index) + (j-r_index)*(j-r_index);
+					
+						if(radius < area*area) 
+							grid.grid[i][j].influence += influence;
+					}
+				}
 			}
-		}
-		delta++;
-		area += 2;
-		influence -= momentum;
+			delta++;
+			area += 2;
+			influence -= momentum;
+		
+		
 	}
 }

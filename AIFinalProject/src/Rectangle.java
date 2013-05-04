@@ -37,4 +37,18 @@ public class Rectangle extends Terrain
 		}
 		return false;
 	}
+	boolean containsPoint(PVector p){
+		if(p.x > position.x && p.x < position.x+width && p.y > position.y && p.y < position.y + height)
+			return true;
+		return false;
+	}
+	boolean intersectsLine(PVector origin, PVector terminal){
+		if(p.x > position.x && p.x < position.x+width && p.y > position.y && p.y < position.y + height)
+			return true;		
+		
+		return false;
+	
+	}
+
+
 }

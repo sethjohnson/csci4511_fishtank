@@ -111,10 +111,10 @@ public class Grid
 	{
 		int i = (int)(parent.mouseX / cellWidth);
 		int j = (int)(parent.mouseY / cellHeight);
-
 		if(i < columns && i > 0 && j < rows && j > 0)
 		{
 			iList.add(new Influence(parent, this, i, j));
+
 		}
 	}	
 }

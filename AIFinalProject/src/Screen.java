@@ -100,4 +100,18 @@ public class Screen
 			}
 		}
 	}
+	
+	boolean doesAnyComponentContainPoint(PVector p) {
+		ListIterator<Component> itr = cList.listIterator(cList.size());
+
+		while(itr.hasPrevious())
+		{
+			Component c = itr.previous();
+			if(c.containsPoint(p))
+			{
+				return true;
+			}
+		}
+		return false;
+	}
 }
