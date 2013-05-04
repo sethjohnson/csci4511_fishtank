@@ -6,7 +6,7 @@ import java.util.ListIterator;
 public class Grid 
 {
 	PApplet parent;
-	
+	String name;
 	Cell[][] grid;
 	
 	LinkedList <Influence> iList = new LinkedList<Influence>();
@@ -22,10 +22,11 @@ public class Grid
 	int columns;
 	int rows;
 
-	Grid(float cH, float cW, int _columns, int _rows, PApplet p)
+	Grid(float cH, float cW, int _columns, int _rows, PApplet p, String _name)
 	{
 		parent = p;
 		
+		this.name = _name;
 		cellHeight = cH;
 		cellWidth = cW;
 		columns = _columns;
@@ -111,10 +112,19 @@ public class Grid
 	{
 		int i = (int)(parent.mouseX / cellWidth);
 		int j = (int)(parent.mouseY / cellHeight);
-
 		if(i < columns && i > 0 && j < rows && j > 0)
 		{
 			iList.add(new Influence(parent, this, i, j));
+
 		}
 	}	
+	
+	boolean equals(Grid g)
+	{
+		if(g.name==this.name)
+		{
+			return true;
+		}
+		return false;
+	}
 }
