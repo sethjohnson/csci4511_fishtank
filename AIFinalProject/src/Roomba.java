@@ -191,6 +191,11 @@ public class Roomba extends Sprite
 		
 		
 	}	
-	
+	boolean containsPoint(PVector p){
+		
+		if(PVector.sub(p,position).magSq() < (dimension.x*dimension.x))
+			return true;
+		return false;
+	}
 } // End of class
 
