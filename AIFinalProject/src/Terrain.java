@@ -87,7 +87,7 @@ public abstract class Terrain extends Component
 		
 		if(i < grid.columns && i > 0 && j < grid.rows && j > 0)
 		{
-			return new PVector(grid.grid[i][j].x, grid.grid[i][j].y);
+			return new PVector(grid.cells[i][j].x, grid.cells[i][j].y);
 		}
 		return null;
 	}

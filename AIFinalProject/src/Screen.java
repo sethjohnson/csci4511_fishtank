@@ -13,6 +13,7 @@ public class Screen
 	int frame;
 	
 	LinkedList<Component> cList;
+	LinkedList<Grid> gList;
 	
 	Screen(PApplet p)
 	{
@@ -20,7 +21,9 @@ public class Screen
 		frame = 0;
 		
 		cList = new LinkedList<Component>();
-		grid = new Grid((parent.width / cellCount), (parent.height / cellCount), cellCount, cellCount, parent);
+		gList = new LinkedList<Grid>();
+
+		grid = new Danger((parent.width / cellCount), (parent.height / cellCount), cellCount, cellCount, parent, "1i", true);
 	}
 	
 	void setup()
@@ -30,6 +33,7 @@ public class Screen
 		cList.add(new Rectangle(parent, grid, new PVector(300, 500), (int)grid.cellWidth*4, (int)grid.cellHeight*4));
 		cList.add(new Rectangle(parent, grid, new PVector(400, 300), (int)grid.cellWidth*4, (int)grid.cellHeight*4));
 		cList.add(new Rectangle(parent, grid, new PVector(400, 600), (int)grid.cellWidth*4, (int)grid.cellHeight*4));
+		gList.add(grid);
 	}
 	
 	void draw()
