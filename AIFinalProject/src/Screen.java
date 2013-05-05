@@ -20,7 +20,7 @@ public class Screen
 		frame = 0;
 		
 		cList = new LinkedList<Component>();
-		grid = new Grid((parent.width / cellCount), (parent.height / cellCount), cellCount, cellCount, parent);
+		grid = new Grid((parent.width / cellCount), (parent.height / cellCount), cellCount, cellCount, parent, "i1");
 	}
 	
 	void setup()
