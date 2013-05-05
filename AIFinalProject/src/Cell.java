@@ -23,13 +23,8 @@ public class Cell
 			  	
 	void display()
 	{
-		if(influence < 0.0)
-		{
-			influence = 0.0f;
-		}
-
 		parent.stroke(100);
-		parent.fill(parent.color(255*influence, 0, 0));
+		parent.fill(parent.color(255*influence*influence, 0, 0));
 		parent.rect(x,y,w,h);
 	}
 }

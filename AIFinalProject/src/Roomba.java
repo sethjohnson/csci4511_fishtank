@@ -69,26 +69,25 @@ public class Roomba extends Sprite
 		float max = 0.0f;
 		Cell pull = null;
 		
-		if(i < grid.columns && i > 0 && j < grid.rows && j > 0 && grid.grid[i][j].influence > threshold)
+		if(i < grid.columns && i > 0 && j < grid.rows && j > 0 && grid.cells[i][j].influence > threshold)
 		{
-		
 			// Checks the influence around the Room-bah.
 			for(int runner = 0; runner < 5; runner++)
 			{
 				if(c_index-delta >= 0 && r_index-delta+runner >= 0 && r_index-delta+runner < grid.rows)
 				{
-					if(grid.grid[c_index-delta][r_index-delta+runner].influence > max)
+					if(grid.cells[c_index-delta][r_index-delta+runner].influence > max)
 					{
-						max = grid.grid[c_index-delta][r_index-delta+runner].influence;
-						pull = grid.grid[c_index-delta][r_index-delta+runner];
+						max = grid.cells[c_index-delta][r_index-delta+runner].influence;
+						pull = grid.cells[c_index-delta][r_index-delta+runner];
 					}
 				}
 				if(r_index+delta-runner >= 0 && r_index+delta-runner < grid.rows && c_index+delta < grid.columns)
 				{
-					if(grid.grid[c_index+delta][r_index+delta-runner].influence > max)
+					if(grid.cells[c_index+delta][r_index+delta-runner].influence > max)
 					{
-						max = grid.grid[c_index+delta][r_index+delta-runner].influence;
-						pull = grid.grid[c_index+delta][r_index+delta-runner];
+						max = grid.cells[c_index+delta][r_index+delta-runner].influence;
+						pull = grid.cells[c_index+delta][r_index+delta-runner];
 					}
 				}
 			}
@@ -97,19 +96,19 @@ public class Roomba extends Sprite
 			{
 				if(c_index-delta+runner >= 0 && c_index-delta+runner < grid.columns && r_index-delta >= 0)
 				{
-					if(grid.grid[c_index-delta+runner][r_index-delta].influence > max)
+					if(grid.cells[c_index-delta+runner][r_index-delta].influence > max)
 					{
-						max = grid.grid[c_index-delta+runner][r_index-delta].influence;
-						pull = grid.grid[c_index-delta+runner][r_index-delta];
+						max = grid.cells[c_index-delta+runner][r_index-delta].influence;
+						pull = grid.cells[c_index-delta+runner][r_index-delta];
 					}
 				}
 				
 				if(c_index+delta-runner >= 0 && c_index+delta-runner < grid.columns && r_index+delta < grid.rows)
 				{
-					if(grid.grid[c_index+delta-runner][r_index+delta].influence > max)
+					if(grid.cells[c_index+delta-runner][r_index+delta].influence > max)
 					{
-						max = grid.grid[c_index+delta-runner][r_index+delta].influence;
-						pull = grid.grid[c_index+delta-runner][r_index+delta];
+						max = grid.cells[c_index+delta-runner][r_index+delta].influence;
+						pull = grid.cells[c_index+delta-runner][r_index+delta];
 					}
 				}			
 			}
@@ -156,7 +155,7 @@ public class Roomba extends Sprite
 					}
 					else
 					{
-						options[i+2][j+2] += g.grid[c_index+i][r_index+j].influence;
+						options[i+2][j+2] += g.cells[c_index+i][r_index+j].influence;
 					}
 				}
 			}
@@ -186,16 +185,16 @@ public class Roomba extends Sprite
 		pull_r = max_j-2+r_index;
 		
 		Grid pullGrid = grids.getFirst();
-		pull = pullGrid.grid[pull_c][pull_r];
+		pull = pullGrid.cells[pull_c][pull_r];
 		return pull;
 		
 		
 	}	
-	boolean containsPoint(PVector p){
-		
-		if(PVector.sub(p,position).magSq() < (dimension.x*dimension.x))
-			return true;
-		return false;
-	}
+//	boolean containsPoint(PVector p){
+//		
+//		if(PVector.sub(p,position).magSq() < (dimension.x*dimension.x))
+//			return true;
+//		return false;
+//	}
 } // End of class
 
