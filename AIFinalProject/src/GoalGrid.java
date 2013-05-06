@@ -53,7 +53,7 @@ public class GoalGrid extends Grid
 
 	}
 	
-	void mouseClicked()
+	boolean mouseClicked()
 	{
 		for (int i = 0; i < columns; i++)
 		{
@@ -69,5 +69,7 @@ public class GoalGrid extends Grid
 		int j = goal_y = (int)(parent.mouseY / cellHeight);
 
 		recurse(i,j,1);
+		
+		return false;
 	}	
 }

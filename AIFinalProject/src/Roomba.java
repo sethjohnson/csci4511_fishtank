@@ -8,6 +8,7 @@ public class Roomba extends Sprite
 	LinkedList<Grid> grids = new LinkedList<Grid>();
 	Grid grid;
 	float threshold = 0.01f;
+	main pMain;
 	
 	Roomba(PApplet p, PVector pv, float r, Grid _grid)
 	{
@@ -15,14 +16,15 @@ public class Roomba extends Sprite
 		
 		grid = _grid;		
 		dimension = new PVector(r, r);
+		pMain = (main)p;
 	}
 	
 	Roomba(PApplet p, PVector pv, float r, LinkedList<Grid> _grids)
 	{
 		super(p, pv);
 		
-		this.grids = _grids;		
-		this.dimension = new PVector(r, r);
+		grids = _grids;		
+		dimension = new PVector(r, r);
 	}
 
 	void draw()
@@ -37,26 +39,38 @@ public class Roomba extends Sprite
 		parent.stroke(0);
 		parent.ellipse(0, 0, 2*dimension.x, 2*dimension.y);
 		parent.line(0, 0, dimension.x, 0);
-
 		parent.popMatrix();	
 	}
 	
 	void update()
 	{
 		super.update();
-
-		Cell pull = pull();
-		if(pull != null)
+		
+		if(!pMain.paused)
 		{
-			PVector newDirection = new PVector(pull.x, pull.y);
-			direction.add(PVector.mult(PVector.fromAngle((PVector.sub(newDirection, position).heading())), turn_speed*10));
-			
-			if(direction.mag() > max_velocity)
+			Cell pull = pull();
+			if(pull != null)
 			{
-				direction.setMag(max_velocity);
+				PVector newDirection = new PVector(pull.x, pull.y);
+				direction.add(PVector.mult(PVector.fromAngle((PVector.sub(newDirection, position).heading())), turn_speed*10));
+				
+				if(direction.mag() > max_velocity)
+				{
+					direction.setMag(max_velocity);
+				}
 			}
+			position.add(direction);
 		}
-		position.add(direction);				
+	}
+
+	boolean mousePressed()
+	{
+		if(parent.mouseX > position.x - dimension.x && parent.mouseX < position.x + dimension.x  && parent.mouseY > position.y - dimension.y && parent.mouseY < position.y + dimension.y)
+		{
+			grabbed = true;
+			return true;
+		}
+		return false;
 	}
 
 	Cell pull()

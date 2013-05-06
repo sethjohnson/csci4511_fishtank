@@ -83,8 +83,9 @@ public abstract class Grid
 	{
 	}
 	
-	void mouseClicked()
+	boolean mouseClicked()
 	{
+		return false;
 	}
 	
 	boolean equals(Grid g)

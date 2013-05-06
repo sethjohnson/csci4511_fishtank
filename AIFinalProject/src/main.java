@@ -9,7 +9,7 @@ public class main extends PApplet
 
 	Screen screen;
 	int val;
-	boolean loop = true;
+	boolean paused = false;
 	
 	public void setup() 
 	{
@@ -37,15 +37,9 @@ public class main extends PApplet
 	
 	public void keyTyped()
 	{
-		if(key == 32 && !loop)
+		if(key == 32)
 		{
-			loop = true;
-			loop();
-		}
-		else if(key == 32 && loop)
-		{
-			loop = false;
-			noLoop();
+			paused = !paused;
 		}
 	}
 }

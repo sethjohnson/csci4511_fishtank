@@ -51,7 +51,7 @@ public class Danger extends Grid
 		}
 	}
 	
-	void mouseClicked()
+	boolean mouseClicked()
 	{
 		int i = (int)(parent.mouseX / cellWidth);
 		int j = (int)(parent.mouseY / cellHeight);
@@ -59,5 +59,6 @@ public class Danger extends Grid
 		{
 			iList.add(new Influence(parent, this, i, j));
 		}
+		return true;
 	}	
 }
