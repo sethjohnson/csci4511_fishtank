@@ -25,6 +25,7 @@ public class Screen
 
 		//grid = new Danger((parent.width / cellCount), (parent.height / cellCount), cellCount, cellCount, parent, "1i", true);
 		grid = new GoalGrid((parent.width / cellCount), (parent.height / cellCount), cellCount, cellCount, parent, "1i", true);
+		//grid = new CoverGrid((parent.width / cellCount), (parent.height / cellCount), cellCount, cellCount, parent, "1i", true);
 	}
 	
 	void setup()
