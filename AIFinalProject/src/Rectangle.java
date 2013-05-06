@@ -1,5 +1,8 @@
 import processing.core.PApplet;
 import processing.core.PVector;
+import processing.core.PApplet;
+import processing.core.PVector;
+import processing.core.PVector;
 
 
 public class Rectangle extends Terrain
@@ -100,12 +103,50 @@ public class Rectangle extends Terrain
 		return false;
 	}
 	boolean containsPoint(PVector p){
-		if(p.x > position.x && p.x < position.x+width && p.y > position.y && p.y < position.y + height)
+		if(
+				p.x > position.x 
+				&& p.x < position.x+width 
+				&& p.y > position.y 
+				&& p.y < position.y + height
+				)
 			return true;
 		return false;
 	}
-	boolean intersectsLine(PVector origin, PVector terminal){
 	
+	int aboveOrBelow(PVector a, PVector b, PVector point) {
+		   float z = PVector.sub(a,b).cross(PVector.sub(a,point)).z;
+		   if(z == 0) return 0;
+		   return (int)(z/Math.abs(z));
+		//return (int)(side/Math.abs(side));
+	}
+	
+	boolean intersectsLine(PVector origin, PVector terminal){
+		if(position.y > terminal.y && position.y > origin.y) return false;
+		if(position.x > terminal.x && position.x > origin.x) return false;
+		if(position.y+ height < terminal.y && position.y + height < origin.y) return false;
+		if(position.x+ width < terminal.x && position.x + width < origin.x) return false;
+		
+		// Check to see which side of the line the initial point is on
+		int side1 = aboveOrBelow(origin, terminal, position);
+		int side2 = aboveOrBelow(origin, terminal, new PVector(position.x+width, position.y));
+		int side3 = aboveOrBelow(origin, terminal, new PVector(position.x+width, position.y+height));
+		int side4 = aboveOrBelow(origin, terminal, new PVector(position.x, 		 position.y+height));
+
+		//if(side1 == 0) return true;
+//		if(side2 == 0) return true;
+//		if(side3 == 0) return true;
+//		if(side4 == 0) return true;
+//		
+		if(!(side1 == side2 && side2 == side3 && side3 == side4)){
+			System.out.format("%d, %d, %d, %d\n", side1, side2, side3, side4);
+
+			return true;
+		}
+//		if(side2 != side3) return true;
+//		if(side3 != side4) return true;
+
+		
+		//return true;
 		return false;
 	
 	}

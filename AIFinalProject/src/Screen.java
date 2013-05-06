@@ -31,9 +31,9 @@ public class Screen
 	{	
 		cList.add(new Roomba(parent, new PVector(100, 200), 20, grid));
 		cList.add(new Rectangle(parent, grid, new PVector(100, 400), (int)grid.cellWidth*4, (int)grid.cellHeight*4));
-		cList.add(new Rectangle(parent, grid, new PVector(300, 500), (int)grid.cellWidth*4, (int)grid.cellHeight*4));
-		cList.add(new Rectangle(parent, grid, new PVector(400, 300), (int)grid.cellWidth*4, (int)grid.cellHeight*4));
-		cList.add(new Rectangle(parent, grid, new PVector(400, 600), (int)grid.cellWidth*4, (int)grid.cellHeight*4));
+		//cList.add(new Rectangle(parent, grid, new PVector(300, 500), (int)grid.cellWidth*4, (int)grid.cellHeight*4));
+		//cList.add(new Rectangle(parent, grid, new PVector(400, 300), (int)grid.cellWidth*4, (int)grid.cellHeight*4));
+		//cList.add(new Rectangle(parent, grid, new PVector(400, 600), (int)grid.cellWidth*4, (int)grid.cellHeight*4));
 		gList.add(grid);
 	}
 	
@@ -113,6 +113,20 @@ public class Screen
 		{
 			Component c = itr.previous();
 			if(c.containsPoint(p))
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	boolean doesAnyComponentIntersectLine(PVector origin, PVector terminal) {
+		ListIterator<Component> itr = cList.listIterator(cList.size());
+
+		while(itr.hasPrevious())
+		{
+			Component c = itr.previous();
+			if(c.intersectsLine(origin, terminal))
 			{
 				return true;
 			}

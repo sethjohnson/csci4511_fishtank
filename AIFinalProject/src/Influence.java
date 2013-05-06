@@ -33,9 +33,10 @@ public class Influence
 			{
 				for(int j = Math.max(r_index-area, 0); j < Math.min(r_index+area, grid.rows); j++)
 				{
-					PVector p = new PVector((i)*grid.cellWidth,(j)*grid.cellHeight);
+					PVector p = new PVector((i+0.5f)*grid.cellWidth,(j+0.5f)*grid.cellHeight);
+					PVector o = new PVector((c_index+0.5f)*grid.cellWidth,(r_index+0.5f)*grid.cellHeight);
 
-					if(!((main)parent).screen.doesAnyComponentContainPoint(p)){
+					if(!((main)parent).screen.doesAnyComponentIntersectLine(o, p)){
 						float radius = (i-c_index)*(i-c_index) + (j-r_index)*(j-r_index);
 					
 						if((area-2)*(area-2) <= radius && radius < area*area) 
