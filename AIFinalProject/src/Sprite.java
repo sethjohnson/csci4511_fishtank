@@ -30,9 +30,9 @@ public abstract class Sprite extends Component
 	
 	void draw()
 	{
-		if (position.x > parent.width || position.x < 0)
+		if (position.x+dimension.x > parent.width || position.x-dimension.x < 0)
 			direction.x = -direction.x;
-		if (position.y > parent.height || position.y < 0)
+		if (position.y+dimension.y > parent.height || position.y-dimension.y < 0)
 			direction.y = -direction.y;
 	}
 }

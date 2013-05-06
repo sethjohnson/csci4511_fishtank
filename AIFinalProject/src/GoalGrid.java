@@ -22,26 +22,27 @@ public class GoalGrid extends Grid
 		super.draw();
 	}
 	void recurse(int x, int y, float i){
-		PVector p = new PVector((x+0.5f)*cellWidth,(y+0.5f)*cellHeight);
 		if(x >= columns || x < 0 || y >= rows || y < 0) return;
+		
+		if(cells[x][y].influence >= i) return;
+		PVector p = new PVector((x+0.5f)*cellWidth,(y+0.5f)*cellHeight);
+
 		if(((main)parent).screen.doesAnyComponentContainPoint(p)){
 			return;
 		}
-		if(cells[x][y].influence >= i){
-			return;
-		}
+
 		cells[x][y].influence = i;
 		//System.out.println("Doing stuff");
-		float dec = 0.01f;
-		recurse(x-1, y-1, i-dec*1.5f);
+		float dec = 0.005f;
+		//recurse(x-1, y-1, i-dec*1.5f);
 		recurse(x, 	 y-1, i-dec);
-		recurse(x+1, y-1, i-dec*1.5f);
+		//recurse(x+1, y-1, i-dec*1.5f);
 		recurse(x-1, y, i-dec);
 		//recurse(x, 	 y, i-0.01f);
 		recurse(x+1, y, i-dec);	
-		recurse(x-1, y+1, i-dec*1.5f);
+		//recurse(x-1, y+1, i-dec*1.5f);
 		recurse(x, 	 y+1, i-dec);
-		recurse(x+1, y+1, i-dec*1.5f);	
+		//recurse(x+1, y+1, i-dec*1.5f);	
 	}
 	void update()
 	{
