@@ -23,17 +23,24 @@ public class Screen
 		cList = new LinkedList<Component>();
 		gList = new LinkedList<Grid>();
 
-		grid = new Danger((parent.width / cellCount), (parent.height / cellCount), cellCount, cellCount, parent, "1i", true);
+		//grid = new Danger((parent.width / cellCount), (parent.height / cellCount), cellCount, cellCount, parent, "1i", true);
+		grid = new GoalGrid((parent.width / cellCount), (parent.height / cellCount), cellCount, cellCount, parent, "1i", true);
 
 	}
 	
 	void setup()
 	{	
-		cList.add(new Roomba(parent, new PVector(100, 200), 20, grid));
+		cList.add(new Roomba(parent, new PVector(600, 600), 20, grid));
+
 		cList.add(new Rectangle(parent, grid, new PVector(100, 400), (int)grid.cellWidth*4, (int)grid.cellHeight*4));
-		//cList.add(new Rectangle(parent, grid, new PVector(300, 500), (int)grid.cellWidth*4, (int)grid.cellHeight*4));
-		//cList.add(new Rectangle(parent, grid, new PVector(400, 300), (int)grid.cellWidth*4, (int)grid.cellHeight*4));
-		//cList.add(new Rectangle(parent, grid, new PVector(400, 600), (int)grid.cellWidth*4, (int)grid.cellHeight*4));
+		cList.add(new Rectangle(parent, grid, new PVector(300, 500), (int)grid.cellWidth*4, (int)grid.cellHeight*4));
+		cList.add(new Rectangle(parent, grid, new PVector(400, 300), (int)grid.cellWidth*4, (int)grid.cellHeight*4));
+		cList.add(new Rectangle(parent, grid, new PVector(400, 600), (int)grid.cellWidth*4, (int)grid.cellHeight*4));
+		cList.add(new Rectangle(parent, grid, new PVector(400, 400), (int)grid.cellWidth*4, (int)grid.cellHeight*4));
+		cList.add(new Rectangle(parent, grid, new PVector(200, 300), (int)grid.cellWidth*8, (int)grid.cellHeight*32));
+		cList.add(new Rectangle(parent, grid, new PVector(200, 300), (int)grid.cellWidth*32, (int)grid.cellHeight*6));
+		cList.add(new Rectangle(parent, grid, new PVector(400, 300), (int)grid.cellWidth*8, (int)grid.cellHeight*32));
+
 		gList.add(grid);
 	}
 	
@@ -86,6 +93,8 @@ public class Screen
 	
 	void mousePressed()
 	{
+		((GoalGrid)gList.get(0)).mouseClicked();
+
 		if(!cList.isEmpty())
 		{
 			//Iterate through the list backwards

@@ -49,7 +49,7 @@ public class Roomba extends Sprite
 		if(pull != null)
 		{
 			PVector newDirection = new PVector(pull.x, pull.y);
-			direction.add(PVector.mult(PVector.fromAngle((PVector.sub(newDirection, position).heading())), turn_speed));
+			direction.add(PVector.mult(PVector.fromAngle((PVector.sub(newDirection, position).heading())), turn_speed*10));
 			
 			if(direction.mag() > max_velocity)
 			{

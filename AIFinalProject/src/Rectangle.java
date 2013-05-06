@@ -104,10 +104,10 @@ public class Rectangle extends Terrain
 	}
 	boolean containsPoint(PVector p){
 		if(
-				p.x > position.x 
-				&& p.x < position.x+width 
-				&& p.y > position.y 
-				&& p.y < position.y + height
+				p.x > position.x-20
+				&& p.x < position.x+width+20
+				&& p.y > position.y -20
+				&& p.y < position.y + height +20
 				)
 			return true;
 		return false;
@@ -132,21 +132,12 @@ public class Rectangle extends Terrain
 		int side3 = aboveOrBelow(origin, terminal, new PVector(position.x+width, position.y+height));
 		int side4 = aboveOrBelow(origin, terminal, new PVector(position.x, 		 position.y+height));
 
-		//if(side1 == 0) return true;
-//		if(side2 == 0) return true;
-//		if(side3 == 0) return true;
-//		if(side4 == 0) return true;
-//		
 		if(!(side1 == side2 && side2 == side3 && side3 == side4)){
-			System.out.format("%d, %d, %d, %d\n", side1, side2, side3, side4);
-
 			return true;
 		}
-//		if(side2 != side3) return true;
-//		if(side3 != side4) return true;
+
 
 		
-		//return true;
 		return false;
 	
 	}
