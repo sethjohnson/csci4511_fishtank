@@ -39,7 +39,7 @@ public class Influence
 					if(!((main)parent).screen.doesAnyComponentIntersectLine(o, p)){
 						float radius = (i-c_index)*(i-c_index) + (j-r_index)*(j-r_index);
 					
-						if((area-2)*(area-2) <= radius && radius < area*area) 
+						if((area-2)*(area-2) <= radius && radius < area*area)
 							grid.cells[i][j].influence += influence;		
 					}
 				}

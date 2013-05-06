@@ -102,6 +102,7 @@ public class Rectangle extends Terrain
 		}
 		return false;
 	}
+	
 	boolean containsPoint(PVector p){
 		if(
 				p.x > position.x-20
@@ -139,8 +140,5 @@ public class Rectangle extends Terrain
 
 		
 		return false;
-	
 	}
-
-
 }

@@ -25,12 +25,14 @@ public class Screen
 
 		//grid = new Danger((parent.width / cellCount), (parent.height / cellCount), cellCount, cellCount, parent, "1i", true);
 		grid = new GoalGrid((parent.width / cellCount), (parent.height / cellCount), cellCount, cellCount, parent, "1i", true);
-
 	}
 	
 	void setup()
 	{	
 		cList.add(new Roomba(parent, new PVector(600, 600), 20, grid));
+		cList.add(new Roomba(parent, new PVector(200, 200), 20, grid));
+		cList.add(new Roomba(parent, new PVector(600, 200), 20, grid));
+
 
 		cList.add(new Rectangle(parent, grid, new PVector(100, 400), (int)grid.cellWidth*4, (int)grid.cellHeight*4));
 		cList.add(new Rectangle(parent, grid, new PVector(300, 500), (int)grid.cellWidth*4, (int)grid.cellHeight*4));
