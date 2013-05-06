@@ -30,18 +30,17 @@ public class Screen
 	void setup()
 	{	
 		cList.add(new Roomba(parent, new PVector(600, 600), 20, grid));
-//		cList.add(new Roomba(parent, new PVector(200, 200), 20, grid));
-//		cList.add(new Roomba(parent, new PVector(600, 200), 20, grid));
+		cList.add(new Roomba(parent, new PVector(200, 200), 20, grid));
+		cList.add(new Roomba(parent, new PVector(600, 200), 20, grid));
 
-
-//		cList.add(new Rectangle(parent, grid, new PVector(100, 400), (int)grid.cellWidth*4, (int)grid.cellHeight*4));
-//		cList.add(new Rectangle(parent, grid, new PVector(300, 500), (int)grid.cellWidth*4, (int)grid.cellHeight*4));
-//		cList.add(new Rectangle(parent, grid, new PVector(400, 300), (int)grid.cellWidth*4, (int)grid.cellHeight*4));
-//		cList.add(new Rectangle(parent, grid, new PVector(400, 600), (int)grid.cellWidth*4, (int)grid.cellHeight*4));
-//		cList.add(new Rectangle(parent, grid, new PVector(400, 400), (int)grid.cellWidth*4, (int)grid.cellHeight*4));
-//		cList.add(new Rectangle(parent, grid, new PVector(200, 300), (int)grid.cellWidth*8, (int)grid.cellHeight*32));
-//		cList.add(new Rectangle(parent, grid, new PVector(200, 300), (int)grid.cellWidth*32, (int)grid.cellHeight*6));
-//		cList.add(new Rectangle(parent, grid, new PVector(400, 300), (int)grid.cellWidth*8, (int)grid.cellHeight*32));
+		cList.add(new Rectangle(parent, grid, new PVector(100, 400), (int)grid.cellWidth*4, (int)grid.cellHeight*4));
+		cList.add(new Rectangle(parent, grid, new PVector(300, 500), (int)grid.cellWidth*4, (int)grid.cellHeight*4));
+		cList.add(new Rectangle(parent, grid, new PVector(400, 300), (int)grid.cellWidth*4, (int)grid.cellHeight*4));
+		cList.add(new Rectangle(parent, grid, new PVector(400, 600), (int)grid.cellWidth*4, (int)grid.cellHeight*4));
+		cList.add(new Rectangle(parent, grid, new PVector(400, 400), (int)grid.cellWidth*4, (int)grid.cellHeight*4));
+		cList.add(new Rectangle(parent, grid, new PVector(200, 300), (int)grid.cellWidth*8, (int)grid.cellHeight*32));
+		cList.add(new Rectangle(parent, grid, new PVector(200, 300), (int)grid.cellWidth*32, (int)grid.cellHeight*6));
+		cList.add(new Rectangle(parent, grid, new PVector(400, 300), (int)grid.cellWidth*8, (int)grid.cellHeight*32));
 
 		gList.add(grid);
 	}
