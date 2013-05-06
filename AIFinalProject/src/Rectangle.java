@@ -1,9 +1,5 @@
 import processing.core.PApplet;
 import processing.core.PVector;
-import processing.core.PApplet;
-import processing.core.PVector;
-import processing.core.PVector;
-
 
 public class Rectangle extends Terrain
 {

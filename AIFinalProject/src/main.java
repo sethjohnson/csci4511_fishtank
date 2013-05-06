@@ -9,6 +9,8 @@ public class main extends PApplet
 
 	Screen screen;
 	int val;
+	boolean loop = true;
+	
 	public void setup() 
 	{
 		val = 42;
@@ -31,5 +33,19 @@ public class main extends PApplet
 	public void mousePressed()
 	{
 		screen.mousePressed();
+	}
+	
+	public void keyTyped()
+	{
+		if(key == 32 && !loop)
+		{
+			loop = true;
+			loop();
+		}
+		else if(key == 32 && loop)
+		{
+			loop = false;
+			noLoop();
+		}
 	}
 }

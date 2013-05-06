@@ -1,5 +1,3 @@
-import java.util.ListIterator;
-
 import processing.core.PApplet;
 import processing.core.PVector;
 
