@@ -41,7 +41,7 @@ public class CoverGrid extends Grid
 				if(((main)parent).screen.doesAnyComponentIntersectLine(o,p))
 					cells[i][j].influence = 0;
 				else
-					cells[i][j].influence = 300/PVector.sub(p,o).mag();
+					cells[i][j].influence = 1- (float)Math.pow(PVector.sub(p,o).mag()/900,2);
 
 			}
 		}

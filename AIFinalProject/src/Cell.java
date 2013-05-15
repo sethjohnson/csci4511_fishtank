@@ -24,7 +24,7 @@ public class Cell
 	void display()
 	{
 		parent.stroke(100);
-		parent.fill(parent.color(255*influence*influence, 0, 0));
+		parent.fill(parent.color(0, 255*influence*influence,  0));
 		parent.rect(x,y,w,h);
 	}
 }

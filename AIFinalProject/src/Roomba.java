@@ -1,4 +1,5 @@
 import java.util.LinkedList;
+import java.util.ListIterator;
 
 import processing.core.PApplet;
 import processing.core.PVector;
@@ -9,6 +10,7 @@ public class Roomba extends Sprite
 	Grid grid;
 	float threshold = 0.01f;
 	main pMain;
+	LinkedList<PVector> trail = new LinkedList<PVector>();
 	
 	Roomba(PApplet p, PVector pv, float r, Grid _grid)
 	{
@@ -30,7 +32,22 @@ public class Roomba extends Sprite
 	void draw()
 	{
 		super.draw();
-		
+		if(trail.size() > 2) {
+			ListIterator itr_a = trail.listIterator();
+			ListIterator itr_b = trail.listIterator();
+			itr_b.next();
+			parent.stroke(255);
+			while(itr_b.hasNext()) {
+				PVector a = (PVector)itr_a.next();
+				PVector b = (PVector)itr_b.next();
+				
+				parent.line(a.x, a.y, b.x, b.y);
+			}
+			System.out.println(trail.size());
+		}
+
+
+		//for( )
 		parent.pushMatrix();
 		parent.translate(position.x, position.y);
 		parent.rotate(direction.heading());
@@ -48,11 +65,12 @@ public class Roomba extends Sprite
 		
 		if(!pMain.paused)
 		{
+			trail.add(new PVector(position.x, position.y));
 			Cell pull = pull();
 			if(pull != null)
 			{
 				PVector newDirection = new PVector(pull.x, pull.y);
-				direction.add(PVector.mult(PVector.fromAngle((PVector.sub(newDirection, position).heading())), turn_speed*10));
+				direction.add(PVector.mult(PVector.fromAngle((PVector.sub(newDirection, position).heading())), turn_speed*5));
 				
 				if(direction.mag() > max_velocity)
 				{

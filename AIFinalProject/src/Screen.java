@@ -30,9 +30,9 @@ public class Screen
 	
 	void setup()
 	{	
-		cList.add(new Roomba(parent, new PVector(600, 600), 20, grid));
-		cList.add(new Roomba(parent, new PVector(200, 200), 20, grid));
-		cList.add(new Roomba(parent, new PVector(600, 200), 20, grid));
+		//cList.add(new Roomba(parent, new PVector(600, 600), 20, grid));
+		//cList.add(new Roomba(parent, new PVector(200, 200), 20, grid));
+		//cList.add(new Roomba(parent, new PVector(600, 200), 20, grid));
 
 		cList.add(new Rectangle(parent, grid, new PVector(100, 400), (int)grid.cellWidth*4, (int)grid.cellHeight*4));
 		cList.add(new Rectangle(parent, grid, new PVector(300, 500), (int)grid.cellWidth*4, (int)grid.cellHeight*4));
@@ -80,6 +80,10 @@ public class Screen
 	{		
 		if(!cList.isEmpty())
 		{
+			for(Component c : cList) {
+				if(c instanceof Roomba )
+					((Roomba)c).trail.clear();
+			}
 			//Iterate through the list backwards
 			//This way things on top have priority for consuming a mouse click
 			ListIterator<Component> itr = cList.listIterator(cList.size());

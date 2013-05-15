@@ -31,20 +31,20 @@ public class GoalGrid extends Grid
 
 		cells[x][y].influence = i;
 		//System.out.println("Doing stuff");
-		float dec = 0.0025f;
+		float dec = 0.005f;
 		float new_i_straight = i-dec;
-		float new_i_diag = i-dec*1.5f;
+		float new_i_diag = i-dec*1.4f;
 		recurse(x, 	 y-1, new_i_straight);
 		recurse(x-1, y, new_i_straight);
 		recurse(x+1, y, new_i_straight);	
 		recurse(x, 	 y+1, new_i_straight);
-		/*
+		
 		recurse(x-1, y+1, new_i_diag);
 		recurse(x+1, y-1, new_i_diag);
 		recurse(x-1, y-1, new_i_diag);
 
 		recurse(x+1, y+1, new_i_diag);	
-		*/
+		
 	}
 	void update()
 	{
